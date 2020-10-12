@@ -55,7 +55,7 @@ scaleY(.5)，或者box-shadow, linear-gradient
   position: absolute;
   top: 50%;
   left: 50%;
-  /* 尺寸已知 */
+  /* 尺寸已知 */  
   margin-top: -(height / 2);
   margin-left: - (width / 2);
   /* 尺寸未知 */
