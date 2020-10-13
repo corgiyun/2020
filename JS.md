@@ -59,4 +59,84 @@ function throttle(fn, delay) {
 ```
 
 
-### Promise 原理
+### Promise
+```js
+class Promise {
+  callbacks = [];
+  state = 'pending'; // 状态
+  value = null; // 保存结果
+  constructor(fn) {
+    fn(this._resolve.bind(this))
+  }
+
+  then(onFulfilled) {
+    if (this.state === 'pending') { // 在 resolve 之前，跟之前逻辑一样，添加到 callbacks 中
+      this.callbacks.push(onFulfilled)
+    } else { // 在 resolve 之后，直接执行回调没，返回结果了
+      onFulfilled(this.value)
+    }
+    return this;
+  }
+  _resolve(value) {
+    this.state = 'fulfilled'; // 改变状态
+    this.value = value; // 保存结果
+    this.callbacks.forEach(fn=> fn(value))
+  } 
+}
+
+// Promise 应用
+let p = new Promise(resolve=> {
+  // setTimeout(()=> {
+    console.log('done');
+    resolve('2秒')
+  // }, 2000)
+}).then(tip=> {
+  console.log('then1',tip);
+}).then(tip=> {
+  console.log('then2,', tip);
+})
+```
+
+
+### 闭包
+函数在词法作用域之外调用，仍能访问到内部的变量，会形成闭包
+
+### Event Loop 事件循环
+JavaScript 只有单线程，同步事件放入栈中依次处理，异步事件放入队列中，当主线程闲置时，会去查找事件队列是否有任务，如果有，会取出排在第一位的事件，并把这个事件对应的回调放入执行栈中，如此反复循环，直到事件处理完毕。
+
+### 协程和线程
+
+
+### 深拷贝实现原理
+
+
+### 原型和继承
+
+
+### call、apply 和 bind 的区别
+
+
+### 路由的两种方式 history 和 hash 的区别
+
+
+### 箭头函数和普通函数的区别
+- 箭头函数代码简写清晰，优雅
+- 箭头函数没有自己的this，它会捕获在定义时外层的this并继承，所以在定义时this已经被确定了不会再改变
+- 箭头函数没有arguments
+- 箭头函数没有原型
+
+
+### 弱引用 WeakMap, WeakSet, 和普通 object 的区别
+
+
+### 事件捕获和冒泡
+事件捕获：从 document 到 target
+事件冒泡：从 target 到 document
+
+
+### 判断基本数据类型和引用类型的方法
+判断基本数据类型，可以用 typeof 方法
+判断引用类型用 instance
+
+
+### 柯里化函数
