@@ -62,7 +62,7 @@ view dispatch 拦截 action, 然后执行对应 reducer 并更新到 store 中�
 - action 就是 view 发出的通知，表示 state 要发生变化了
 - store 接收到 action 后，必须给出一个新的 state, 这样 view 才能发生变化，这种 state 的计算过程就叫做 reducer
 - reducer 指定了应用状态的变化如何响应 action 并发送到 store 的，描述如何改变数据
-
+dispatch 触发 action，effects 定义更新方法，触发 reducer return 一个新的 state, 触发渲染更新
 
 ### hooks API
 - useState
