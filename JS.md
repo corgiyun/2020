@@ -157,3 +157,6 @@ JavaScript 只有单线程，同步事件放入栈中依次处理，异步事件
 - 强缓存通过 expires 和 Cache-control 实现， expires是一个绝对时间，受限于本地时间；cache-control是想对时间，一般设置 max-age=xxx;(no-store不会缓存数据到本地),cache-control 优先级高于 expires
 - 协商缓存命中会返回304，Last-Modified 表示本地文件最后修改日期，浏览器会在请求头加上 If-Modified-Since(上次返回的 Last-Modified 的值)，询问服务器在该日期后资源是否有更新，有更新的话就会将新的资源发送回来，但是如果在本地打开了缓存文件，会造成 Last-Modified 被修改，所以 HTTP/1.1出现了 ETag
 - 资源变化会导致ETag变化，保证每一个资源都是唯一的。 If-Modified-Match 的 header 会将上次返回的 ETag 发送给服务器，询问该资源的 ETag 是否有更新，有变动就会发送新的资源回来。ETag 优先级高于 Last-Modified
+
+from memory cache 是页面刷新时从内存中取
+form disk cache 页面tab关闭后从磁盘中取
