@@ -108,6 +108,6 @@ state更新完毕, 执行操作
 - 监听数据变化的实现原理不同，Vue 使用 getter/setter 及其他函数劫持，React 默认通过比较引用（diff）的方式，如果不做优化会导致大量不必要的虚拟DOM的重新渲染
 - 状态管理不同，Vue 使用data 管理状态，可以直接修改，React 使用 state管理，不可直接修改，需使用 setState
 - 数据流不同，Vue 是双向数据流，React 是单向数据流
-- 组合功能方式不同，Vue 中组合不同的功能用mixin，React使用 HoC
+- 组合功能方式不同，Vue 中组合不同的功能用mixin，React使用 HOC
 - 通信方式不同，Vue 中子组件给父组件通信倾向于使用事件方式，React使用回调函数
 - 模版渲染方式不同，Vue 使用拓展的 HTML语法进行渲染，React是使用 JSX 渲染模版
