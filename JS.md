@@ -160,3 +160,5 @@ JavaScript 只有单线程，同步事件放入栈中依次处理，异步事件
 
 from memory cache 是页面刷新时从内存中取
 form disk cache 页面tab关闭后从磁盘中取
+
+
