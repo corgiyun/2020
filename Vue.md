@@ -113,3 +113,9 @@ hash模式下，仅hash符号之前的内容会被包含在请求中，如 http:
 history采用HTML5的新特性；且提供了两个新方法：pushState()，replaceState()可以对浏览器历史记录栈进行修改，以及popState事件的监听到状态变更。
 history模式下，前端的URL必须和实际向后端发起请求的URL一致，如 http://www.xxx.com/items/id。后端如果缺少对 /items/id 的路由处理，将返回 404 错误。
 Vue-Router官网里如此描述：“不过这种模式要玩好，还需要后台配置支持……所以呢，你要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 index.html 页面，这个页面就是你 app 依赖的页面。
+
+
+### watch 和 computed 的区别
+-  watch 擅长处理的场景：一个数据影响多个数据。更像是data的数据监听回调，当依赖的data数据变化，执行回调。方法中会传入newVal和oldValue。如果需要在某个数据变化时做一些事情，使用watch
+
+-  computed 擅长处理的场景：一个数据受多个数据影响。computed 是计算属性，它会根据你所依赖的数据动态显示新的计算结果，计算结果会被缓存，computed的值在getter执行后是会缓存的，只有在它依赖的属性值改变之后，下一次获取computed的值才会重新调用对应的getter计算

@@ -1,11 +1,12 @@
 ### 生命周期
-- componentWillMount()
-- componentDidMount()
-- componentWillReceivedProps()
-- shouldComponentUpdate()
-- componentWillUpdate()
-- componentDidUpdate()
-- componentWillUnmount()
+- componentWillMount() // 组件即将被渲染到页面之前触发，可以进行服务器请求等操作
+- render() // 组件渲染阶段
+- componentDidMount() // 组件已经被渲染到页面中后触发，此时页面有了真正的DOM元素，可以进行DOM相关的操作
+- componentWillReceiveProps() // 组件接收到属性时触发
+- shouldComponentUpdate() // 当组件接收到新属性，或者组件的状态发生改变时触发，组件首次渲染时并不会触发
+- componentWillUpdate() // 组件即将更新
+- componentDidUpdate() // 组件更新完成，页面中产生了新的DOM元素，可以进行DOM操作
+- componentWillUnmount() // 组件被销毁时触发，清理定时器，取消Redux的订阅事件等
 
 <!-- 16.3更新 -->
 <!-- 为了更好的支持异步渲染，解决生命周期滥用可能导致的问题 -->
@@ -18,24 +19,24 @@
 
 <!-- 16.8 -->
 挂载阶段：
-- constructor(props) 实例化
-- static getDerivedStateFromProps() 从props中取state
-- render 渲染
-- componentDidMount 完成挂载
+- constructor(props) // 实例化
+- static getDerivedStateFromProps() // 从props中取state
+- render // 渲染
+- componentDidMount // 完成挂载
 
 更新阶段：
-- static getDerivedStateFromProps 从 props 中获取 state
-- shouldComponentUpdate 判断是否需要重绘
-- render 渲染
-- getSnapshotBeforeUpdate 获取快照
-- componentDidUpdate 渲染完成后回调
+- static getDerivedStateFromProps // 从 props 中获取 state
+- shouldComponentUpdate // 判断是否需要重绘
+- render // 渲染
+- getSnapshotBeforeUpdate // 获取快照
+- componentDidUpdate // 渲染完成后回调
 
 卸载阶段：
 - componentsWillUnmount
 
 错误处理
-- static getDerivedStateFromError 从错误中获取state
-- componentDidCatch 捕获错误并进行处理
+- static getDerivedStateFromError // 从错误中获取state
+- componentDidCatch // 捕获错误并进行处理
 
 
 ### 类组件和函数式组件的区别
@@ -111,3 +112,14 @@ state更新完毕, 执行操作
 - 组合功能方式不同，Vue 中组合不同的功能用mixin，React使用 HOC
 - 通信方式不同，Vue 中子组件给父组件通信倾向于使用事件方式，React使用回调函数
 - 模版渲染方式不同，Vue 使用拓展的 HTML语法进行渲染，React是使用 JSX 渲染模版
+
+
+### React 性能优化
+
+#### shouldComponentUpdate()
+判断该组件是否需要更新
+#### PureComponent
+把继承类从 Components 换成 PureComponent 即可，减少不必要的render。当组件更新时，如果组件的 props 和 state 都没发生改变，render方法就不会触发，省去了 Virtual DOM的生成和对比过程，从而达到提升性能。比较 Object.keys(state | props)的长度是否一致，做了浅比较。
+- 易变数据不能使用一个引用
+- 不变数据引用同一个引用
+#### 复杂状态和简单状态不要共用一个组件
